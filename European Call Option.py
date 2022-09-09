@@ -25,10 +25,10 @@ import math
 # V = S(0) N(d1) - K exp (-r T ) N(d2), where N(x) is the Gaussian Integral from - inf to x. 
 
 def simulate_path( S_0, r, vol, T ):
-    # 1 step per day, maturity given in years
-    steps = T * 365
-    step_vol = vol / math.sqrt( 365 )
-    step_r = r / 365
+    # 10 steps per day, maturity given in years
+    steps = T * 365 * 10
+    step_vol = vol / math.sqrt( 365 * 10 )
+    step_r = r / 365 / 10
     
     S = S_0
     
@@ -65,7 +65,7 @@ def black_scholes( S_0, r, vol, T, K ):
 def compare_values_for_N( S_0, r, vol, T, K ):
     print("number of simulations | expected value ")
     
-    lst = [100,1000,10000,20000,50000,100000]
+    lst = [10, 100, 500, 1000, 2000, 3000, 5000]
      
     for i in lst:
         print(str(i) + ': ' + str ( expected_value( i, S_0, r, vol, T,  K ) ) )
